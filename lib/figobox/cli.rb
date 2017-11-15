@@ -24,8 +24,11 @@ module Figobox
           command = compiler.add
           puts "Executing command:\n  #{command}"
           system command
-          puts
-          puts "If this is a remote alias, you will need to redeploy before these changes have any effect."
+
+          if nanobox_alias != "local" && nanobox_alias != "dry-run"
+            puts
+            puts "You will need to redeploy before these changes have any effect."
+          end
         end
       end
     end

@@ -21,7 +21,9 @@ module Figobox
               #{compiler.add}
           OUTPUT
         else
-          system compiler.add
+          command = compiler.add
+          puts "Executing command:\n  #{command}"
+          system command
         end
       end
     end

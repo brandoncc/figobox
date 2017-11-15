@@ -19,6 +19,20 @@ RSpec.describe Figobox::Cli do
     cli.set
   end
 
+  it "shows the command that is being executed" do
+    expect_any_instance_of(Kernel)
+      .to receive(:puts)
+      .with("Executing command:\n  nanobox evar add local KEY=val")
+
+    expect_any_instance_of(Kernel)
+      .to receive(:system)
+      .with("nanobox evar add local KEY=val")
+
+    options = { figaro_environment: "development" }
+    cli = Figobox::Cli.new([], options)
+    cli.set
+  end
+
   it "requires a figaro environment to be specified" do
     expect_any_instance_of(Kernel)
       .to receive(:abort)

@@ -1,0 +1,13 @@
+GLOBAL_KEY: global value
+
+development:
+  DEVELOPMENT_KEY: development value
+  ANOTHER_DEVELOPMENT_KEY: another development value
+
+staging:
+  STAGING_KEY: staging value
+  ANOTHER_STAGING_KEY: another staging value
+
+production:
+  PRODUCTION_KEY: production value
+  ANOTHER_PRODUCTION_KEY: another production value

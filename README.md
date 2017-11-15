@@ -1,3 +1,5 @@
+![Travis build status](https://travis-ci.org/brandoncc/figobox.svg?branch=master)
+
 # Figobox
 
 [Figaro](https://github.com/laserlemon/figaro) is an incredibly useful and popular tool in the Rails community. [Nanobox](https://nanobox.io/) is an up and coming app deployment platform that deploys dockerized app components to one or more VPS' on the provider of your choice. These are both great tools, so why shouldn't they work together?

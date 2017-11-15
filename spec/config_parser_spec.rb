@@ -4,7 +4,7 @@ RSpec.describe Figobox::ConfigParser do
   before do
     allow(File)
       .to receive(:read)
-      .and_return(File.read("#{File.dirname(__FILE__)}/fixtures/application.yml"))
+      .and_return(File.read(File.expand_path("#{File.dirname(__FILE__)}/fixtures/application.yml")))
   end
 
   describe "#new" do

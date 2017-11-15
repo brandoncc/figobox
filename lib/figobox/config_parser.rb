@@ -4,7 +4,7 @@ module Figobox
   class ConfigParser
     def initialize
       verify_config_exists
-      @yaml = YAML.load(File.read("config/application.yml"))
+      @yaml = YAML.load(File.read(File.expand_path("config/application.yml")))
     end
 
     def get_keys_for_environment(environment)

@@ -28,6 +28,10 @@ RSpec.describe Figobox::Cli do
       .to receive(:system)
       .with("nanobox evar add local KEY=val")
 
+
+    expect_any_instance_of(Kernel)
+      .to receive(:puts).twice
+
     options = { figaro_environment: "development" }
     cli = Figobox::Cli.new([], options)
     cli.set

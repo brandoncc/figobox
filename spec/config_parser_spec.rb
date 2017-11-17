@@ -8,7 +8,7 @@ RSpec.describe Figobox::ConfigParser do
   end
 
   describe "#new" do
-    it "raises an error if no config file exists" do
+    it "aborts with an error if no config file exists", :allow_abort do
       expect(File).to receive(:exists?).and_return(false)
 
       expect_any_instance_of(Kernel)
@@ -22,7 +22,7 @@ RSpec.describe Figobox::ConfigParser do
   describe "#get_keys_for_environment" do
     before { allow(File).to receive(:exists?).and_return(true) }
 
-    it "raises an error if the specified environment doesn't exist" do
+    it "aborts with an error if the specified environment doesn't exist", :allow_abort do
       expect_any_instance_of(Kernel)
         .to receive(:abort)
         .with("'fake' environment doesn't exist in the configuration file.")
@@ -54,6 +54,20 @@ RSpec.describe Figobox::ConfigParser do
     it "does not return the environment keys as data" do
       expect(subject.get_keys_for_environment("development"))
         .not_to have_key("staging")
+    end
+
+    it "overrides global values with environment specific values" do
+      allow(File)
+        .to receive(:read)
+        .and_return({
+          "KEY" => "GLOBAL VALUE",
+          "development" => {
+            "KEY" => "env value"
+          }
+        }.to_yaml)
+
+      result = subject.get_keys_for_environment("development")
+      expect(result["KEY"]).to eq("env value")
     end
   end
 end

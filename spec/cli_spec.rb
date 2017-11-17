@@ -33,7 +33,7 @@ RSpec.describe Figobox::Cli do
     cli.set
   end
 
-  it "requires a figaro environment to be specified" do
+  it "requires a figaro environment to be specified", :allow_abort do
     expect_any_instance_of(Kernel)
       .to receive(:abort)
       .with("You must specify a figaro environment to use as a source")
@@ -83,7 +83,7 @@ RSpec.describe Figobox::Cli do
     cli.set
   end
 
-  it "shows an error if the a custom figaro env is used but no alias if provided" do
+  it "shows an error if the a custom figaro env is used but no alias if provided", :allow_abort do
     expect_any_instance_of(Kernel)
       .to receive(:abort)
       .with("Unable to automatically determine the nanobox alias to use as a target. Please use the -n option to specify one.")
